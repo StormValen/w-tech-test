@@ -6,12 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductListComponent } from './components/product/product-list/product-list.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         ProductComponent,
-        ProductListComponent
+        ProductListComponent,
+        HeaderComponent,
+        SearchbarComponent
     ],
     imports: [
         BrowserModule,
