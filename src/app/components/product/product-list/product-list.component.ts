@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { FavoriteControllerService } from 'src/app/controllers/favorite/favorite-controller.service';
 import { ProductViewModel } from '../../product.model';
 
 @Component({
@@ -7,12 +9,23 @@ import { ProductViewModel } from '../../product.model';
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
+    private favoriteProductsListSubscription: Subscription; // TODO: esto no va aqui, va en el modal de favs
     public products: ProductViewModel[] = [];
+    
 
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient,
+        private favoriteController: FavoriteControllerService
+    ) { }
 
     ngOnInit(): void {
+        // TODO: Esto no va aqui va en el modal de favs.
+        this.favoriteProductsListSubscription = this.favoriteController.favoriteProductList$
+            .subscribe((favoriteProductList: ProductViewModel[]) => {
+                console.log(favoriteProductList);
+            });
+
         this.http.get<any>('https://frontend-tech-test-data.s3.eu-west-1.amazonaws.com/items.json')
             .subscribe(_res => {
                 _res.items.forEach(element => {
@@ -20,6 +33,11 @@ export class ProductListComponent implements OnInit {
                     this.products.push(product);
                 });
             });
+
+    }
+
+    ngOnDestroy(): void {
+        this.favoriteProductsListSubscription.unsubscribe();
     }
 
 }
