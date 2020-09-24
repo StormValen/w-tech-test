@@ -12,7 +12,6 @@ import { ProductViewModel } from '../../product.model';
 export class ProductListComponent implements OnInit, OnDestroy {
     private favoriteProductsListSubscription: Subscription; // TODO: esto no va aqui, va en el modal de favs
     public products: ProductViewModel[] = [];
-    
 
     constructor(
         private http: HttpClient,

@@ -1,0 +1,30 @@
+@import '../../styles/colors.scss';
+:host {
+    .product {
+        &-container {
+            height: 420px;
+            width: 220px;
+            border-radius: 10px;
+            box-shadow: 0 0 2px 0 rgba(0,0,0,.1);
+            background-color: white;
+            overflow: hidden;
+            margin: 0 12px 12px 0;
+            padding: 4px 4px 4px 4px;
+        }
+        &-image {
+            height: 253px;
+            border-radius: 5px;
+            background-color: lightgray;
+        }
+        &-info {
+            margin: 20px 6px 20px 6px;
+            .description-text {
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                color: $app-grey-text;
+            }
+        }
+    }
+}
