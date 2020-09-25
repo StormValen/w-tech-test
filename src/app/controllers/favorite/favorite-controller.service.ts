@@ -8,10 +8,16 @@ import { ProductViewModel } from 'src/app/components/product.model';
 export class FavoriteControllerService {
     private favoriteProductList: ProductViewModel[] = [];
     private favoriteProductListSource = new ReplaySubject<ProductViewModel[]>();
+    private favoriteProductDeletedSource = new ReplaySubject<ProductViewModel>();
     public favoriteProductList$ = this.favoriteProductListSource.asObservable();
+    public favoriteProductDeleted$ = this.favoriteProductDeletedSource.asObservable();
 
     constructor() { }
 
+    private notifyProductListChanges(): void {
+        this.favoriteProductListSource.next(this.favoriteProductList);
+    }
+    
     public addFavoriteProduct(productToAdd: ProductViewModel): void {
         this.favoriteProductList.push(productToAdd);
         this.notifyProductListChanges();
@@ -19,6 +25,7 @@ export class FavoriteControllerService {
 
     public removeFavoriteProduct(productToRemove: ProductViewModel): void {
         this.favoriteProductList = this.favoriteProductList.filter(product => product !== productToRemove);
+        this.favoriteProductDeletedSource.next(productToRemove);
         this.notifyProductListChanges();
     }
 
@@ -30,10 +37,5 @@ export class FavoriteControllerService {
         this.favoriteProductList = [];
     }
 
-    private notifyProductListChanges(): void {
-        this.favoriteProductListSource.next(this.favoriteProductList);
-    }
-
-    
 
 }

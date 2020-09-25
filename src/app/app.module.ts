@@ -8,6 +8,7 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { FavoriteModalComponent } from './components/favorite/favorite-modal/favorite-modal.component';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
         ProductComponent,
         ProductListComponent,
         HeaderComponent,
-        SearchbarComponent
+        SearchbarComponent,
+        FavoriteModalComponent
     ],
     imports: [
         BrowserModule,
