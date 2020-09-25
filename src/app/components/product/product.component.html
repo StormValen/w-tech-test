@@ -1,6 +1,13 @@
-<p>{{product.getTitle()}}</p>
-<p>{{product.getDescription()}}</p>
-<p>{{product.getEmail()}}</p>
-<p>{{product.getPrice()}}</p>
-<p>{{product.getFavorite()}}</p>
-<button (click)="onClickFavorite()">FAV</button>
+<div class="product-container">
+    <div class="product-image"></div>
+    <div class="product-info">
+        <b>{{product.getPrice()}} €</b>
+        <p class="w-100">{{product.getTitle()}}</p>
+        <p class="w-100 description-text">{{product.getDescription()}}</p>
+        <p>{{product.getEmail()}}</p>
+        <p>{{product.getFavorite()}}</p>
+        <button (click)="onClickFavorite()">
+            FAV
+        </button>
+    </div>
+</div>
