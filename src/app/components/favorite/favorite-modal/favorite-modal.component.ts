@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { FavoriteControllerService } from 'src/app/controllers/favorite/favorite-controller.service';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { StoreService } from 'src/app/controllers/store.service';
 import { ProductViewModel } from '../../product.model';
 
 @Component({
@@ -8,19 +8,12 @@ import { ProductViewModel } from '../../product.model';
     templateUrl: './favorite-modal.component.html',
     styleUrls: ['./favorite-modal.component.scss']
 })
-export class FavoriteModalComponent implements OnInit, OnDestroy {
-    private favoriteProductsListSubscription: Subscription;
-    
-    constructor(public favoriteController: FavoriteControllerService) { }
+export class FavoriteModalComponent {
+    public products$: Observable<ProductViewModel[]>;
 
-    ngOnInit(): void {
-        this.favoriteProductsListSubscription = this.favoriteController.favoriteProductList$
-            .subscribe((favoriteProductList: ProductViewModel[]) => {
-                console.log(favoriteProductList);
-            });
-    }
-
-    ngOnDestroy(): void {
-        this.favoriteProductsListSubscription.unsubscribe();
+    constructor(
+        private storeService: StoreService
+    ) { 
+        this.products$ = this.storeService.getProductList();
     }
 }

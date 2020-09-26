@@ -15,9 +15,11 @@
             </div>
             <div class="modal-body">
                 <app-searchbar></app-searchbar>
-                <div *ngFor="let product of favoriteController.getFavoriteProductList()">
-                    {{product.getTitle()}}
-                    <button (click)="favoriteController.removeFavoriteProduct(product)">X</button>
+                <div *ngFor="let product of products$ | async">
+                    <span *ngIf="product.favorite" class="d-flex justify-content-between">
+                        {{product.title}}
+                        <button (click)="storeService.updateProduct(product);">X</button>
+                    </span>
                 </div>
             </div>
             <div class="modal-footer">
