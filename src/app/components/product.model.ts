@@ -7,12 +7,12 @@ export class ProductModel {
 }
 
 export class ProductViewModel {
-    private title: string;
-    private description: string;
-    private email: string;
-    private price: number;
-    private image: string;
-    private favorite: boolean;
+    public title: string;
+    public description: string;
+    public email: string;
+    public price: number;
+    public image: string;
+    public favorite: boolean;
 
     constructor(productModel: ProductModel) {
         this.title = productModel.title;
@@ -21,21 +21,5 @@ export class ProductViewModel {
         this.price = Number(productModel.price);
         this.image = productModel.image;
         this.favorite = false;
-    }
-
-    public getTitle() { return this.title; }
-
-    public getDescription() { return this.description; }
-
-    public getEmail() { return this.email; }
-
-    public getPrice() { return this.price; }
-
-    public getImageUrl() { return this.image; }
-
-    public getFavorite() { return this.favorite; }
-
-    public toggleFavorite() {
-        this.favorite = !this.favorite;
     }
 }

@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FavoriteControllerService } from 'src/app/controllers/favorite/favorite-controller.service';
-import { ProductViewModel } from '../product.model';
+import { Component, Input } from '@angular/core';
+import { StoreService } from 'src/app/controllers/store.service';
+import { ProductModel, ProductViewModel } from '../product.model';
 
 @Component({
     selector: 'app-product',
@@ -11,11 +11,10 @@ export class ProductComponent {
     @Input() product: ProductViewModel;
 
     constructor(
-        private favoriteController: FavoriteControllerService
+        private storeService: StoreService
     ) { }
     
     public onClickFavorite(): void {
-        this.product.getFavorite() ? this.favoriteController.removeFavoriteProduct(this.product) : this.favoriteController.addFavoriteProduct(this.product);
-        this.product.toggleFavorite();
+        this.storeService.updateProduct(this.product);
     }
 }

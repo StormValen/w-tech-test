@@ -10,6 +10,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { FavoriteModalComponent } from './components/favorite/favorite-modal/favorite-modal.component';
 
+import { StoreModule } from '@ngrx/store';
+import * as ProductsReducer from './redux/reducers/product.reducer';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -22,7 +25,8 @@ import { FavoriteModalComponent } from './components/favorite/favorite-modal/fav
     imports: [
         BrowserModule,
         AppRoutingModule,
-        HttpClientModule
+        HttpClientModule,
+        StoreModule.forRoot({'productsMethod': ProductsReducer.productReducer})
     ],
     providers: [],
     bootstrap: [AppComponent]

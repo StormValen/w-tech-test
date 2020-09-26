@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { FavoriteControllerService } from 'src/app/controllers/favorite/favorite-controller.service';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { StoreService } from 'src/app/controllers/store.service';
 import { ProductViewModel } from '../../product.model';
 
 @Component({
@@ -9,34 +9,26 @@ import { ProductViewModel } from '../../product.model';
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit, OnDestroy {
-    private favoriteProductsListSubscription: Subscription; // TODO: esto no va aqui, va en el modal de favs
-    public products: ProductViewModel[] = [];
-
+export class ProductListComponent implements OnInit {
+    public products$: Observable<ProductViewModel[]>;
+    
     constructor(
         private http: HttpClient,
-        private favoriteController: FavoriteControllerService
+        private storeService: StoreService
     ) { }
 
     ngOnInit(): void {
-        // TODO: Esto no va aqui va en el modal de favs.
-        this.favoriteProductsListSubscription = this.favoriteController.favoriteProductList$
-            .subscribe((favoriteProductList: ProductViewModel[]) => {
-                console.log(favoriteProductList);
-            });
 
         this.http.get<any>('https://frontend-tech-test-data.s3.eu-west-1.amazonaws.com/items.json')
             .subscribe(_res => {
                 _res.items.forEach(element => {
                     let product = new ProductViewModel(element);
-                    this.products.push(product);
+                    this.storeService.addProduct(product);
                 });
+
+                this.products$ = this.storeService.getProductList();
             });
 
-    }
-
-    ngOnDestroy(): void {
-        this.favoriteProductsListSubscription.unsubscribe();
     }
 
 }
