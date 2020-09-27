@@ -1,0 +1,16 @@
+
+<div class="favorite-product">
+    <div class="row">
+        <div class="col d-flex flex-wrap">
+            <div class="favorite-product-image" 
+                [style.background]="'url(' + product.image + ')'"
+                [style.background-size]="'cover'"
+                [style.background-position]="'center'">
+            </div>
+            <div class="col w-100 d-flex justify-content-between p-2 align-items-center">
+                <p>{{ product.title }}</p>
+                <div class="far fa-trash-alt" (click)="delete()" [style.color]="'#00B9A2'"></div>
+            </div>
+        </div>
+    </div>
+</div>

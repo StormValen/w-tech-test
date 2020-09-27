@@ -12,6 +12,7 @@ import { FavoriteModalComponent } from './components/favorite/favorite-modal/fav
 
 import { StoreModule } from '@ngrx/store';
 import * as ProductsReducer from './redux/reducers/product.reducer';
+import { FavoriteProductComponent } from './components/product/favorite-product/favorite-product.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import * as ProductsReducer from './redux/reducers/product.reducer';
         ProductListComponent,
         HeaderComponent,
         SearchbarComponent,
-        FavoriteModalComponent
+        FavoriteModalComponent,
+        FavoriteProductComponent
     ],
     imports: [
         BrowserModule,
