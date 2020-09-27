@@ -22,4 +22,8 @@ export class ProductViewModel {
         this.image = productModel.image;
         this.favorite = false;
     }
+
+    public getImageUrl(): string {
+        return this.image;
+    }
 }

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { StoreService } from 'src/app/store/store.service';
-import { ProductModel, ProductViewModel } from '../product/product.model';
+import { ProductViewModel } from '../product/product.model';
 
 @Component({
     selector: 'app-product',
@@ -10,11 +10,5 @@ import { ProductModel, ProductViewModel } from '../product/product.model';
 export class ProductComponent {
     @Input() product: ProductViewModel;
 
-    constructor(
-        private storeService: StoreService
-    ) { }
-    
-    public onClickFavorite(): void {
-        this.storeService.updateProduct(this.product);
-    }
+    constructor(public storeService: StoreService) { }
 }

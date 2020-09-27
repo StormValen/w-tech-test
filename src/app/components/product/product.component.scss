@@ -1,4 +1,5 @@
 @import '../../styles/colors.scss';
+
 :host {
     .product {
         &-container {
@@ -14,17 +15,34 @@
         &-image {
             height: 253px;
             border-radius: 5px;
-            background-color: lightgray;
         }
         &-info {
-            margin: 20px 6px 20px 6px;
+            margin: 10px 6px 10px 6px;
             .description-text {
                 overflow: hidden;
                 display: -webkit-box;
                 -webkit-line-clamp: 3;
                 -webkit-box-orient: vertical;
                 color: $app-grey-text;
+                font-size: 14px;
+                font-weight: 300;
+                min-height: 63px;
+            }
+            .email-text {
+                font-size: 10px;
+                color: $app-green;
+            }
+            p {
+                margin-bottom: .5rem !important;
             }
         }
+
+    }
+    button {
+        position: relative;
+        top: -155px;
+        left: 185px;
+        border: transparent;
+        background-color: transparent;
     }
 }
