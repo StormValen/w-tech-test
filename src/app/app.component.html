@@ -1,11 +1,17 @@
-<span>{{ title }} app is running!</span>
 <router-outlet></router-outlet>
 <app-header></app-header>
 
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col" [style.padding-top]="'60px'">
+            <hr>
             <app-product-list></app-product-list>
+            <hr>
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <p class="info-tech-test">Valentin Gutierrez - Wallapop - Technical test 2020</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

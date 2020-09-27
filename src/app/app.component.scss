@@ -1,0 +1,9 @@
+@import '../app/styles/colors.scss';
+
+:host {
+    .info-tech-test {
+        color: $app-green;
+        font-size: 10px;
+        font-weight: 300;
+    }
+}
