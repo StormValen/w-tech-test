@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { StoreService } from 'src/app/controllers/store.service';
+import { StoreService } from 'src/app/store/store.service';
 import { ProductViewModel } from '../../product/product.model';
 
 @Component({
