@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ProductModel, ProductViewModel } from 'src/app/components/product.model';
+import { ProductModel, ProductViewModel } from 'src/app/components/product/product.model';
 
 import { FavoriteControllerService } from './favorite-controller.service';
 

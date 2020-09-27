@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ProductViewModel } from 'src/app/components/product.model';
+import { ProductViewModel } from 'src/app/components/product/product.model';
 import { FavoriteControllerService } from '../favorite/favorite-controller.service';
 
 @Injectable({

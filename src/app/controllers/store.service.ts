@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductViewModel } from '../components/product.model';
+import { ProductViewModel } from '../components/product/product.model';
 import { Store } from '@ngrx/store';
 import * as ProductActions from 'src/app/redux/actions/product.actions';
 import * as ProcuctSelectors from 'src/app/redux/selectors/product.selector';

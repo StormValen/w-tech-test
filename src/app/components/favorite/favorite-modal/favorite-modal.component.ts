@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StoreService } from 'src/app/controllers/store.service';
-import { ProductViewModel } from '../../product.model';
+import { ProductViewModel } from '../../product/product.model';
 
 @Component({
     selector: 'app-favorite-modal',

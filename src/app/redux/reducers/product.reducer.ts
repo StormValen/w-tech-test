@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { ProductViewModel } from 'src/app/components/product.model';
+import { ProductViewModel } from 'src/app/components/product/product.model';
 import * as ProductActions from '../actions/product.actions';
 
 export const productsFeatureKey = 'productsMethod';
