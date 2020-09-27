@@ -3,3 +3,30 @@
 body {
     background-color: $app-grey-background;
 }
+
+.app-icon {
+    // background-color: $app-green;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    margin-right: 20px;
+    box-shadow: 0 2px 4px 0 rgba(37,50,56,.1);
+    background: url('https://pbs.twimg.com/profile_images/811961783804194817/0qLaSNmk.jpg');
+    background-size: cover;
+}
+.app-button {
+    background-color: $app-green;
+    border-radius: 20px;
+    font-weight: 300;
+    color: white;
+    border: none;
+    padding: 7px 16px 7px 16px;
+    &:hover {
+        background-color: $app-green-hover;
+    }
+    &:active {
+        background-color: $app-green-active;
+    }
+}
