@@ -19,14 +19,14 @@
                 <hr>
                 <div *ngFor="let product of products$ | async">
                     <app-favorite-product
-                        *ngIf="product.favorite"
+                        *ngIf="product.favorite && !product.hidden"
                         [product]="product"
                         (deleteProduct)="storeService.updateProduct(product);">
                     </app-favorite-product>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="app-button" data-dismiss="modal">Close</button>
+                <button type="button" class="app-button" data-dismiss="modal" (click)="storeService.filterProducts('')">Close</button>
             </div>
         </div>
     </div>

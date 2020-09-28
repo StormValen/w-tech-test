@@ -8,11 +8,16 @@ export const addProduct = createAction(
 export const removeProduct = createAction(
     '[Product Component] Remove Product',
     props<{ product: ProductViewModel }>()
-    );
+);
 export const updateProduct = createAction(
     '[Product Component] Update Product',
     props<{ product: ProductViewModel }>()
 )
 export const clearProducts = createAction(
     '[Product Component] Clear Products'
-    );
+);
+
+export const filterProducts = createAction(
+    '[Product Component] Filter Products',
+    props<{ searchTerm: string }>()
+);

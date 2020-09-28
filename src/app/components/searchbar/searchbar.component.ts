@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { StoreService } from 'src/app/store/store.service';
 
 @Component({
-  selector: 'app-searchbar',
-  templateUrl: './searchbar.component.html',
-  styleUrls: ['./searchbar.component.scss']
+    selector: 'app-searchbar',
+    templateUrl: './searchbar.component.html',
+    styleUrls: ['./searchbar.component.scss']
 })
-export class SearchbarComponent implements OnInit {
+export class SearchbarComponent {
+    public _searchTerm: string = '';
 
-  constructor() { }
+    constructor(private store: StoreService) { }
 
-  ngOnInit(): void {
-  }
+    public searchTerm(): void {
+        this.store.filterProducts(this._searchTerm);
+    }
 
 }

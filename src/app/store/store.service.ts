@@ -30,6 +30,14 @@ export class StoreService {
         )
     }
 
+    public filterProducts(searchTerm: string): void {
+        return this.store.dispatch(
+            ProductActions.filterProducts({
+                searchTerm: searchTerm
+            })
+        )
+    }
+
     public getProductList(): Observable<ProductViewModel[]> {
         return this.store.select(ProcuctSelectors.getProductList);
     }

@@ -1,1 +1,5 @@
-<input type="text" placeholder="Buscar ...">
+<input type="text" placeholder="Buscar ..." [(ngModel)]="_searchTerm">
+<button class="app-button ml-3" (click)="searchTerm()">
+    <div class="fas fa-search mr-2"></div>
+    Search
+</button>

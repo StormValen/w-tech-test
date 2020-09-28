@@ -33,6 +33,24 @@ const _productsReducer = createReducer(
             list: [...newList]
         };
     }),
+    on(ProductActions.filterProducts, (state, {searchTerm}) => {
+        let copyList = [...state.list];
+        let newList = copyList.map(element => {
+            if (element.title.includes(searchTerm) || 
+                element.description.includes(searchTerm) ||
+                element.email.includes(searchTerm) ||
+                element.price.toString().includes(searchTerm) ||
+                element.image.includes(searchTerm)
+                ) {
+                return {...element, hidden: false};
+            }
+            return {...element, hidden: true}
+        })
+        return {
+            ...state,
+            list: [...newList]
+        };
+    })
 );
 
 export function productReducer(state: ProductsState, action: Action) {

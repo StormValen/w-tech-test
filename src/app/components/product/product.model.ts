@@ -13,6 +13,7 @@ export class ProductViewModel {
     public price: number;
     public image: string;
     public favorite: boolean;
+    public hidden: boolean;
 
     constructor(productModel: ProductModel) {
         this.title = productModel.title;
@@ -21,6 +22,7 @@ export class ProductViewModel {
         this.price = Number(productModel.price);
         this.image = productModel.image;
         this.favorite = false;
+        this.hidden = false;
     }
 
     public getImageUrl(): string {
