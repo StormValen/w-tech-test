@@ -1,0 +1,10 @@
+@import '../../styles/colors.scss';
+:host {
+    input {
+        height: 38px;
+        padding-left: 20px;
+        border-radius: 20px;
+        border: solid 1px grey;
+        color: grey;
+    }
+}
