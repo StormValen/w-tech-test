@@ -15,12 +15,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                
+
                 <hr>
                 <div *ngFor="let product of products$ | async">
-                    <app-favorite-product 
+                    <app-favorite-product
                         *ngIf="product.favorite"
-                        [product]="product" 
+                        [product]="product"
                         (deleteProduct)="storeService.updateProduct(product);">
                     </app-favorite-product>
                 </div>

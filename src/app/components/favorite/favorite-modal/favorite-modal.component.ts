@@ -12,8 +12,8 @@ export class FavoriteModalComponent {
     public products$: Observable<ProductViewModel[]>;
 
     constructor(
-        private storeService: StoreService
-    ) { 
+        public storeService: StoreService
+    ) {
         this.products$ = this.storeService.getProductList();
     }
 }

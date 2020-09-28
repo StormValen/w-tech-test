@@ -1,16 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { ProductModel, ProductViewModel } from '../product/product.model';
 import { ProductComponent } from './product.component';
 
 describe('ProductComponent', () => {
     let component: ProductComponent;
     let fixture: ComponentFixture<ProductComponent>;
+    let store: MockStore;
+    const initialState = { list: [] };
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ProductComponent]
+            declarations: [ProductComponent],
+            providers: [ provideMockStore({ initialState })]
         })
             .compileComponents();
+
+        store = TestBed.inject(MockStore);
     });
 
     beforeEach(() => {
@@ -25,19 +31,16 @@ describe('ProductComponent', () => {
         }
         component.product = new ProductViewModel(_product);
         fixture.detectChanges();
+
     });
 
     it('should initialize product variables', () => {
-        expect(component.product.getTitle()).toEqual('test-title');
-        expect(component.product.getDescription()).toEqual('test-description');
-        expect(component.product.getEmail()).toEqual('test-email@email.com');
-        expect(component.product.getPrice()).toEqual(1);
-        expect(component.product.getImageUrl()).toEqual('test-image.png');
-        expect(component.product.getFavorite()).toEqual(false);
+        expect(component.product.title).toEqual('test-title');
+        expect(component.product.description).toEqual('test-description');
+        expect(component.product.email).toEqual('test-email@email.com');
+        expect(component.product.price).toEqual(1);
+        expect(component.product.image).toEqual('test-image.png');
+        expect(component.product.favorite).toEqual(false);
     });
 
-    it('should toggle favorite', () => {
-        component.product.toggleFavorite()
-        expect(component.product.getFavorite()).toEqual(true);
-    })
 });
