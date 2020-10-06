@@ -1,0 +1,8 @@
+
+<div class="row d-flex align-items-center filter-item"
+  [ngClass]="{'filter-item-active': active}"
+  (click)="onClickFilter()">
+  <div class="fas fa-{{filter.icon}} mr-2" [style.fontSize]="'20px'"></div>
+  <p [style.marginBottom]="'0px'">{{ filter.name }}</p>
+</div>
+<hr>

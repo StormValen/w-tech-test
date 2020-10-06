@@ -30,6 +30,16 @@ body {
     }
 }
 
+.modal-content {
+  border: none;
+}
+.modal-header {
+  border-bottom: none;
+}
+.modal-footer {
+  border-top: none;
+}
+
 input:focus,
 select:focus,
 textarea:focus,

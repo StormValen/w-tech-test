@@ -1,0 +1,17 @@
+@import '../../../styles/colors.scss';
+
+:host {
+  .filter {
+    &-item {
+      padding: 15px 20px 15px 20px;
+      &:hover {
+        background-color: $app-grey-background;
+        cursor: pointer;
+      }
+      &-active {
+        color: $app-green;
+      }
+    }
+  }
+  hr { margin: 0px; }
+}

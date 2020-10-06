@@ -1,0 +1,20 @@
+@import '../../../styles/colors.scss';
+
+:host {
+  position: fixed;
+  top: 59px;
+  width: 100%;
+  background-color: $app-grey-background;
+  z-index: 20;
+  .filters-hint-text {
+    padding: 5px;
+    font-size: 12px;
+    button {
+      border: none;
+      background: transparent;
+    }
+  }
+  hr, p {
+    margin: 0;
+  }
+}
