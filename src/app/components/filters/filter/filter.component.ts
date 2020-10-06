@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { StoreService } from 'src/app/store/store.service';
+import { Filter } from '../filters.model';
 
 @Component({
   selector: 'app-filter',
@@ -6,13 +8,15 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent {
-  @Input() filter: { name: string, icon: string};
+  @Input() filter: Filter;
   @Input() active: boolean;
 
-  constructor() { }
+  constructor(
+      private storeService: StoreService
+  ) { }
 
   public onClickFilter(): void {
-    console.log(this.filter.name);
+    this.storeService.filterProductsByFilterType(this.filter);
   }
 
 }

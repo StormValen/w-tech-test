@@ -7,3 +7,8 @@ export const getProductList = createSelector(
     getProductState,
     (state: ProductsState) => state.list
   );
+
+export const getProductActiveFilter = createSelector(
+    getProductState,
+    (state: ProductsState) => state.activeFilter
+)

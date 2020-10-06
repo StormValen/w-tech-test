@@ -4,6 +4,7 @@ import { ProductViewModel } from '../components/product/product.model';
 import { Store } from '@ngrx/store';
 import * as ProductActions from 'src/app/redux/actions/product.actions';
 import * as ProcuctSelectors from 'src/app/redux/selectors/product.selector';
+import { Filter } from '../components/filters/filters.model';
 
 @Injectable({
     providedIn: 'root'
@@ -30,15 +31,27 @@ export class StoreService {
         )
     }
 
-    public filterProducts(searchTerm: string): void {
+    public filterProductsBySearchTerm(searchTerm: string): void {
         return this.store.dispatch(
-            ProductActions.filterProducts({
+            ProductActions.filterProductsBySearchTerm({
                 searchTerm: searchTerm
+            })
+        )
+    }
+
+    public filterProductsByFilterType(filter: Filter): void {  
+        return this.store.dispatch(
+            ProductActions.filterProductsByFilterType({
+                filter: filter
             })
         )
     }
 
     public getProductList(): Observable<ProductViewModel[]> {
         return this.store.select(ProcuctSelectors.getProductList);
+    }
+
+    public getProductActiveFilter(): Observable<Filter> {
+        return this.store.select(ProcuctSelectors.getProductActiveFilter);
     }
 }

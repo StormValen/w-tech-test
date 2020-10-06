@@ -1,5 +1,5 @@
 <div class="modal fade" id="filtersModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-sm">
       <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Ordenado por</h5>
@@ -8,7 +8,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <app-filter *ngFor="let filter of filtersList" [filter]="filter" [active]="false"></app-filter>
+            <app-filter *ngFor="let filter of filtersList" [filter]="filter" [active]="filter.name === activeFilter.name"></app-filter>
           </div>
           <div class="modal-footer">
               <button type="button" class="app-button" data-dismiss="modal">Close</button>

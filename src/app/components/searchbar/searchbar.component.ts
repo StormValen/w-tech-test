@@ -12,7 +12,7 @@ export class SearchbarComponent {
     constructor(private store: StoreService) { }
 
     public searchTerm(): void {
-        this.store.filterProducts(this._searchTerm);
+        this.store.filterProductsBySearchTerm(this._searchTerm);
     }
 
 }

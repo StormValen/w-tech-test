@@ -1,4 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { Filter } from 'src/app/components/filters/filters.model';
 import { ProductViewModel } from 'src/app/components/product/product.model';
 import * as ProductActions from '../actions/product.actions';
 
@@ -6,10 +7,12 @@ export const productsFeatureKey = 'productsMethod';
 
 export interface ProductsState {
     list: ProductViewModel[];
+    activeFilter: Filter;
 }
 
 export const initialState: ProductsState = {
-    list: []
+    list: [],
+    activeFilter: { name: 'Title', icon: 'font'}
 };
 
 const _productsReducer = createReducer(
@@ -33,7 +36,7 @@ const _productsReducer = createReducer(
             list: [...newList]
         };
     }),
-    on(ProductActions.filterProducts, (state, {searchTerm}) => {
+    on(ProductActions.filterProductsBySearchTerm, (state, {searchTerm}) => {
         let copyList = [...state.list];
         let newList = copyList.map(element => {
             if (element.title.includes(searchTerm) || 
@@ -48,11 +51,55 @@ const _productsReducer = createReducer(
         })
         return {
             ...state,
-            list: [...newList]
+            list: [...newList],
+            activeFilter: state.activeFilter
+        };
+    }),
+    on(ProductActions.filterProductsByFilterType, (state, {filter}) => {
+        let copyList = [...state.list];
+        let newList = [];
+        switch (filter.name) {
+            case 'Title':
+                break;
+            case 'Description':
+                break;
+            case 'Price (min - max)':
+                newList = orderByPrice(copyList, 'min-max');
+                break;
+            case 'Price (max - min)':
+                newList = orderByPrice(copyList, 'max-min');
+                break;
+            case 'Email':
+                newList = orderByEmail(copyList);
+                break;
+            default:
+                break;
+        }
+        return {
+            ...state,
+            list: [...newList],
+            activeFilter: filter
         };
     })
 );
 
 export function productReducer(state: ProductsState, action: Action) {
     return _productsReducer(state, action);
+}
+
+export function orderByPrice(productsList: any, orderToDisplay: string) {
+    return productsList.sort((productA, productB) => {
+        switch (orderToDisplay) {
+            case 'min-max':
+                return productA.price - productB.price;
+            case 'max-min':
+                return productB.price - productA.price;
+        }
+    })
+}
+
+export function orderByEmail(productsList: any) {
+    return productsList.sort((productA: ProductViewModel, productB: ProductViewModel) => {
+        return productA.email.toLowerCase() < productB.email.toLowerCase();
+    })
 }
