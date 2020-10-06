@@ -1,12 +1,13 @@
 <div class="product-container">
-<div class="product-image" [style.background]="'url(' + product.image + ')'" [style.background-size]="'cover'"></div>
-    <div class="product-info">
-        <b>{{product.price}} €</b>
-        <p class="w-100">{{product.title}}</p>
-        <p class="w-100 description-text">{{product.description}}</p>
-        <p class="email-text">{{product.email}}</p>
-    </div>
-    <button (click)="storeService.updateProduct(product)">
-        <div [ngClass]="product.favorite ? 'fas fa-heart' : 'far fa-heart'" [style.color]="'#00B9A2'"></div>
-    </button>
+  <!-- <div class="product-image" [style.background]="'url(' + product.image + ')'" [style.background-size]="'cover'"></div> -->
+  <div class="product-image" [style.background-size]="'cover'"></div>
+  <div class="product-info">
+      <b>{{product.price}} €</b>
+      <p class="w-100">{{product.title}}</p>
+      <p class="w-100 description-text">{{product.description}}</p>
+      <p class="email-text">{{product.email}}</p>
+  </div>
+  <button (click)="storeService.updateProduct(product)">
+      <div [ngClass]="product.favorite ? 'fas fa-heart' : 'far fa-heart'" [style.color]="'#00B9A2'"></div>
+  </button>
 </div>
