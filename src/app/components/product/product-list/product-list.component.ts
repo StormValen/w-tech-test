@@ -30,6 +30,7 @@ export class ProductListComponent implements OnInit {
                 });
                 this.products$ = this.storeService.getProductList();
                 this.initializeProductsDisplayed();
+                this.storeService.filterProductsByFilterType({ name: 'Title', icon: 'font' })
                 this.loading = false;
             });
 

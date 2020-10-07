@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { StoreService } from 'src/app/store/store.service';
 import { Filter } from './filters.model';
+import FiltersJson from './filters.json';
 
 @Component({
     selector: 'app-filters',
@@ -10,19 +11,15 @@ import { Filter } from './filters.model';
 })
 export class FiltersComponent implements OnInit, OnDestroy {
     public activeFilter: Filter;
-    public filtersList: Filter[] = [
-        { name: 'Title', icon: 'font' },
-        { name: 'Description', icon: 'align-justify' },
-        { name: 'Price (min - max)', icon: 'euro-sign' },
-        { name: 'Price (max - min)', icon: 'euro-sign' },
-        { name: 'Email', icon: 'envelope-open-text' },
-    ];
+    public filtersList;
 
     private activeFilterSubscription: Subscription;
 
     constructor(
         private storeService: StoreService
-    ) { }
+    ) { 
+        this.filtersList = [...FiltersJson.filters];
+    }
 
     ngOnInit(): void {
         this.storeService.filterProductsByFilterType(this.filtersList[0]);
