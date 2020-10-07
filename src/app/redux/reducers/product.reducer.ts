@@ -60,8 +60,10 @@ const _productsReducer = createReducer(
         let newList = [];
         switch (filter.name) {
             case 'Title':
+                newList = orderAlphabetically(copyList, 'Title');
                 break;
             case 'Description':
+                newList = orderAlphabetically(copyList, 'Description');
                 break;
             case 'Price (min - max)':
                 newList = orderByPrice(copyList, 'min-max');
@@ -70,7 +72,7 @@ const _productsReducer = createReducer(
                 newList = orderByPrice(copyList, 'max-min');
                 break;
             case 'Email':
-                newList = orderByEmail(copyList);
+                newList = orderAlphabetically(copyList, 'Email');
                 break;
             default:
                 break;
@@ -98,8 +100,21 @@ export function orderByPrice(productsList: any, orderToDisplay: string) {
     })
 }
 
-export function orderByEmail(productsList: any) {
-    return productsList.sort((productA: ProductViewModel, productB: ProductViewModel) => {
-        return productA.email.toLowerCase() < productB.email.toLowerCase();
-    })
+export function orderAlphabetically(productsList: any, fieldToFilter: string) {
+    return productsList.sort((productA, productB) => {
+        switch (fieldToFilter) {
+            case 'Title':
+                if (productA.title < productB.title) return -1
+                else return 1;
+            case 'Description':
+                if (productA.description < productB.description) return -1
+                else return 1;        
+            case 'Email':
+                if (productA.email < productB.email) return -1
+                else return 1;
+            default:
+                break;
+        }
+        
+    });
 }
