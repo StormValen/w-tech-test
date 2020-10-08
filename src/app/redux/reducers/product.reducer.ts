@@ -7,11 +7,13 @@ export const productsFeatureKey = 'productsMethod';
 
 export interface ProductsState {
     list: ProductViewModel[];
+    favoriteList: ProductViewModel[];
     activeFilter: Filter;
 }
 
 export const initialState: ProductsState = {
     list: [],
+    favoriteList: [],
     activeFilter: { name: 'Title', icon: 'font'}
 };
 
@@ -26,34 +28,71 @@ const _productsReducer = createReducer(
     on(ProductActions.updateProduct, (state, { product }) => {
         let copyList = [...state.list];
         let newList = copyList.map(element => {
-            if (element === product) {
+            if (element.title === product.title) {
                 return {...element, favorite: !element.favorite};
             }
             return {...element};
         })
-        return {
-            ...state,
-            list: [...newList]
-        };
-    }),
-    on(ProductActions.filterProductsBySearchTerm, (state, {searchTerm}) => {
-        let copyList = [...state.list];
-        let newList = copyList.map(element => {
-            if (element.title.includes(searchTerm) || 
-                element.description.includes(searchTerm) ||
-                element.email.includes(searchTerm) ||
-                element.price.toString().includes(searchTerm) ||
-                element.image.includes(searchTerm)
-                ) {
-                return {...element, hidden: false};
-            }
-            return {...element, hidden: true}
-        })
+
+        let copyFavoriteList = [...state.favoriteList];
+        let newFavoriteList = [];
+        if (copyFavoriteList.find(element => element.title === product.title)) {
+            newFavoriteList = copyFavoriteList.filter(element => element.title !== product.title);
+        } else {
+            newFavoriteList = [...copyFavoriteList, {...product, favorite: !product.favorite}];
+        }
+
         return {
             ...state,
             list: [...newList],
-            activeFilter: state.activeFilter
+            favoriteList:[...newFavoriteList] 
         };
+    }),
+    on(ProductActions.filterProductsBySearchTerm, (state, {search}) => {
+        let copyList = [...state.list];
+        let newList = [];
+        switch (search.case) {
+            case 'Favorites':
+                copyList = [...state.favoriteList];
+                newList = copyList.map(element => {
+                    if (element.title.includes(search.searchTerm) || 
+                        element.description.includes(search.searchTerm) ||
+                        element.email.includes(search.searchTerm) ||
+                        element.price.toString().includes(search.searchTerm) ||
+                        element.image.includes(search.searchTerm)
+                        ) {
+                        return {...element, hidden: false};
+                    }
+                    return {...element, hidden: true}
+                })
+                return {
+                    ...state,
+                    favoriteList: [...newList],
+                    activeFilter: state.activeFilter
+                };
+            case 'All':
+                copyList = [...state.list];
+                newList = copyList.map(element => {
+                    if (element.title.includes(search.searchTerm) || 
+                        element.description.includes(search.searchTerm) ||
+                        element.email.includes(search.searchTerm) ||
+                        element.price.toString().includes(search.searchTerm) ||
+                        element.image.includes(search.searchTerm)
+                        ) {
+                        return {...element, hidden: false};
+                    }
+                    return {...element, hidden: true}
+                })
+                return {
+                    ...state,
+                    list: [...newList],
+                    activeFilter: state.activeFilter
+                };
+            default:
+                break;
+        }
+        
+        
     }),
     on(ProductActions.filterProductsByFilterType, (state, {filter}) => {
         let copyList = [...state.list];

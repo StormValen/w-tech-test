@@ -8,6 +8,11 @@ export const getProductList = createSelector(
     (state: ProductsState) => state.list
   );
 
+export const getProductFavoriteList = createSelector(
+    getProductState,
+    (state: ProductsState) => state.favoriteList
+  );
+
 export const getProductActiveFilter = createSelector(
     getProductState,
     (state: ProductsState) => state.activeFilter

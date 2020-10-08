@@ -14,6 +14,6 @@ export class FavoriteModalComponent {
     constructor(
         public storeService: StoreService
     ) {
-        this.products$ = this.storeService.getProductList();
+        this.products$ = this.storeService.getFavoriteProductList();
     }
 }

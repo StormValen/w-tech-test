@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Filter } from 'src/app/components/filters/filters.model';
 import { ProductViewModel } from 'src/app/components/product/product.model';
+import { Search } from 'src/app/components/searchbar/search.model';
 
 export const addProduct = createAction(
     '[Product Component] Add Product',
@@ -20,7 +21,7 @@ export const clearProducts = createAction(
 
 export const filterProductsBySearchTerm = createAction(
     '[Product Component] Filter Products',
-    props<{ searchTerm: string }>()
+    props<{ search: Search }>()
 );
 
 export const filterProductsByFilterType = createAction(

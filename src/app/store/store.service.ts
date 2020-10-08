@@ -31,10 +31,10 @@ export class StoreService {
         )
     }
 
-    public filterProductsBySearchTerm(searchTerm: string): void {
+    public filterProductsBySearchTerm(_searchTerm: string, _case: string): void {
         return this.store.dispatch(
             ProductActions.filterProductsBySearchTerm({
-                searchTerm: searchTerm
+                search: {searchTerm: _searchTerm, case: _case}
             })
         )
     }
@@ -49,6 +49,10 @@ export class StoreService {
 
     public getProductList(): Observable<ProductViewModel[]> {
         return this.store.select(ProcuctSelectors.getProductList);
+    }
+
+    public getFavoriteProductList(): Observable<ProductViewModel[]> {
+        return this.store.select(ProcuctSelectors.getProductFavoriteList);
     }
 
     public getProductActiveFilter(): Observable<Filter> {
