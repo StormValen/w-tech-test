@@ -1,4 +1,4 @@
-<input type="text" placeholder="Buscar ..." [(ngModel)]="_searchTerm">
+<input type="text" placeholder="Buscar ..." (input)="onKeyPressed($event)">
 <button class="app-button ml-3" (click)="searchTerm()">
     <div class="fas fa-search mr-2"></div>
     Search

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnChanges, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { StoreService } from 'src/app/store/store.service';
 
 @Component({
@@ -6,12 +6,18 @@ import { StoreService } from 'src/app/store/store.service';
     templateUrl: './searchbar.component.html',
     styleUrls: ['./searchbar.component.scss']
 })
-export class SearchbarComponent {
+export class SearchbarComponent  {
+    @ViewChild('searchInput') searchInput: ElementRef;
     public _searchTerm: string = '';
 
     constructor(private store: StoreService) { }
 
     public searchTerm(): void {
+        this.store.filterProductsBySearchTerm(this._searchTerm);
+    }
+
+    public onKeyPressed(event: any): void {
+        this._searchTerm = event.target.value;
         this.store.filterProductsBySearchTerm(this._searchTerm);
     }
 
