@@ -23,7 +23,7 @@
                         (deleteProduct)="storeService.updateProduct(product);">
                     </app-favorite-product>
                 </div>
-                <div *ngIf="(products$ | async).length === 0">No hay productos marcados como favoritos</div>
+                <div *ngIf="(products$ | async).length === 0" class="d-flex justify-content-center" [style.color]="'#00B9A2'">No hay productos marcados como favoritos</div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="app-button" data-dismiss="modal" (click)="storeService.filterProductsBySearchTerm('', 'Favorites')">Close</button>
