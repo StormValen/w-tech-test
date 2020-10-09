@@ -6,7 +6,11 @@ describe('FavoriteModalComponent', () => {
     let component: FavoriteModalComponent;
     let fixture: ComponentFixture<FavoriteModalComponent>;
     let store: MockStore;
-    const initialState = { list: [] };
+    const initialState = { 
+        list: [],
+        favoriteList: [],
+        activeFilter: {} 
+    };
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -14,6 +18,8 @@ describe('FavoriteModalComponent', () => {
             providers: [provideMockStore({ initialState })]
         })
             .compileComponents();
+
+        store = TestBed.inject(MockStore);
     });
 
     beforeEach(() => {

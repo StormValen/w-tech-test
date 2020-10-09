@@ -6,7 +6,11 @@ describe('SearchbarComponent', () => {
     let component: SearchbarComponent;
     let fixture: ComponentFixture<SearchbarComponent>;
     let store: MockStore;
-    const initialState = { list: [] };
+    const initialState = { 
+        list: [],
+        favoriteList: [],
+        activeFilter: {}
+    };
     
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -14,6 +18,8 @@ describe('SearchbarComponent', () => {
             providers: [provideMockStore({ initialState })]
         })
             .compileComponents();
+
+        store = TestBed.inject(MockStore);
     });
 
     beforeEach(() => {
@@ -21,6 +27,10 @@ describe('SearchbarComponent', () => {
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
+
+    afterEach(() => {
+        fixture.destroy();
+      });
 
     it('should create', () => {
         expect(component).toBeTruthy();

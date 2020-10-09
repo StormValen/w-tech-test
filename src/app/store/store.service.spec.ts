@@ -4,19 +4,23 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { StoreService } from './store.service';
 
 describe('StoreService', () => {
-  let service: StoreService;
-  let store: MockStore;
-  const initialState = { list: [] };
+    let service: StoreService;
+    let store: MockStore;
+    const initialState = {
+        list: [],
+        favoriteList: [],
+        activeFilter: { name: 'Title', icon: 'font'}
+    };
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [ provideMockStore({ initialState })]
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [provideMockStore({ initialState })]
+        });
+        service = TestBed.inject(StoreService);
+        store = TestBed.inject(MockStore);
     });
-    service = TestBed.inject(StoreService);
-    store = TestBed.inject(MockStore);
-  });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+    it('should be created', () => {
+        expect(service).toBeTruthy();
+    });
 });

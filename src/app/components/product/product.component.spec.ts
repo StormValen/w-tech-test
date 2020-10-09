@@ -7,7 +7,11 @@ describe('ProductComponent', () => {
     let component: ProductComponent;
     let fixture: ComponentFixture<ProductComponent>;
     let store: MockStore;
-    const initialState = { list: [] };
+    const initialState = { 
+        list: [],
+        favoriteList: [],
+        activeFilter: { name: 'Title', icon: 'font' }
+    };
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
